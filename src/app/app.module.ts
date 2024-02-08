@@ -12,12 +12,13 @@ import { RegisterComponent } from './Pages/Auth/register/register.component';
   declarations: [
     AppComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    RouterModule
+    RouterModule,
+    DashboardModule
   ],
   providers: [],
   bootstrap: [AppComponent]
