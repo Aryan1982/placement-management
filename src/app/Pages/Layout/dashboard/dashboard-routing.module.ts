@@ -10,6 +10,7 @@ const routes: Routes = [
     children: [
       { path: 'studentlist', loadChildren: () => import('../../Student/student-list/student-list.module').then(m => m.StudentListModule) },
       { path: 'companylist', loadChildren: () => import('../../Company/company-list/company-list.module').then(m => m.CompanyListModule) },
+      { path: 'studentprofile', loadChildren: () => import('../../Student/studentProfile/studentProfile.module').then(m => m.StudentProfileModule) },
       // Other child routes can be added here if needed
       // { path: '**', redirectTo: 'login', pathMatch: 'full' }, // Redirect unknown child paths to login
     ]

@@ -9,7 +9,9 @@ import { environment } from 'src/environments/environment';
 export class CommonApiService {
   private apiUrl = environment.url;
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient
+    ) {}
 
   getRequest(url:string): Observable<any>{
     return this.http.get(`${this.apiUrl}/${url}`)
