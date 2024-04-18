@@ -7,7 +7,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class CommonService {
-  theme:string = 'dark';
+  theme:string = 'light';
   constructor() {}
 
   getTheme(){

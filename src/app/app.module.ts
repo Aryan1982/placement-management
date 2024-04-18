@@ -8,7 +8,7 @@ import { DashboardModule } from './Pages/Layout/dashboard/dashboard.module';
 import { RouterModule } from '@angular/router';
 import { RegisterComponent } from './Pages/Auth/register/register.component';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { StudentListComponent } from './Pages/Student/student-list/student-list.component';
 
 @NgModule({
@@ -24,7 +24,8 @@ import { StudentListComponent } from './Pages/Student/student-list/student-list.
     RouterModule,
     HttpClientModule,
     DashboardModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
