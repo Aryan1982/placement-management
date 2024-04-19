@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { CommonService } from 'src/app/services/common.service';
 
 @Component({
   selector: 'app-company-list',
@@ -6,5 +7,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./company-list.component.scss']
 })
 export class CompanyListComponent {
+  constructor(
+    public commonService:CommonService,
+  ){
 
+  }
 }

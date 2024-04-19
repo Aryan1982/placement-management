@@ -26,6 +26,7 @@ export class LoginComponent {
     this.commonApiService.postRequest("api/collections/users/auth-with-password", this.loginForm.value)
       .subscribe({
         next: (res: any) => {
+          localStorage.setItem('userRecord', JSON.stringify(res.record) )
           this.router.navigateByUrl('/companylist');
         },
         error: (error) => {

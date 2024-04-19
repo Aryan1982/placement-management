@@ -17,4 +17,16 @@ export class CommonService {
   setTheme(name:string){
     this.theme = name;
   }
+
+  getUserRole(){
+    const userString = localStorage.getItem('userRecord');
+  
+      if (userString) {
+        // Parse the string to an object
+        const user = JSON.parse(userString);
+        
+        // Access the role property
+        return user.role;
+      }
+  }
 }

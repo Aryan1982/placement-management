@@ -9,7 +9,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [],
+  declarations: [StudentListComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),

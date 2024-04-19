@@ -10,6 +10,7 @@ import { RegisterComponent } from './Pages/Auth/register/register.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { StudentListComponent } from './Pages/Student/student-list/student-list.component';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { StudentListComponent } from './Pages/Student/student-list/student-list.
     HttpClientModule,
     DashboardModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    CommonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

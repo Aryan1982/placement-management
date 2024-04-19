@@ -1,7 +1,7 @@
-<div class="bg-white dark:bg-gray-800 p-8 rounded-md w-full">
+<div class="bg-white dark:bg-gray-800 p-8 rounded-md w-full" *ngIf="commonService.getUserRole() == 'ADMIN'">
     <div class="flex items-center justify-between pb-6">
         <div>
-            <h2 class="text-gray-600 dark:text-gray-300 font-semibold">Placement Drives</h2>
+            <h2 class="text-gray-600 dark:text-gray-300 font-semibold">Students data</h2>
             <!-- <span class="text-xs text-gray-500 dark:text-gray-400">All products item</span> -->
         </div>
         <div class="flex items-center justify-between">
@@ -13,7 +13,7 @@
                 </button> -->
                 <button
                     class="bg-indigo-600 px-4 py-2 rounded-md text-white font-semibold tracking-wide cursor-pointer hover:bg-indigo-700">
-                    Create
+                    Add Student
                 </button>
             </div>
         </div>
@@ -26,7 +26,7 @@
                         <tr>
                             <th
                                 class="px-5 py-3 border-b-2 border-gray-200 dark:border-gray-600 bg-gray-100 dark:bg-gray-600 text-left text-xs font-semibold text-gray-600 dark:text-gray-300 uppercase tracking-wider">
-                                Company Name
+                                Student Name
                             </th>
                             <th
                                 class="px-5 py-3 border-b-2 border-gray-200 dark:border-gray-600 bg-gray-100 dark:bg-gray-600 text-left text-xs font-semibold text-gray-600 dark:text-gray-300 uppercase tracking-wider">
@@ -45,12 +45,14 @@
                                 Applied
                         </th>
                         <th
+                        
                             class="px-5 py-3 border-b-2 border-gray-200 dark:border-gray-600 bg-gray-100 dark:bg-gray-600 text-left text-xs font-semibold text-gray-600 dark:text-gray-300 uppercase tracking-wider">
                                 Action
                         </th>
                         </tr>
                     </thead>
                     <tbody>
+                        <ng-container *ngFor="let item of studentList">
 
                         <tr class="bg-white dark:bg-gray-800">
                             <td class="px-5 py-5 border-b border-gray-200 dark:border-gray-700 text-sm">
@@ -61,15 +63,15 @@
                                             alt="" />
                                     </div>
                                     <div class="ml-3">
-                                        <p class="text-gray-900 dark:text-gray-200 whitespace-no-wrap">Dev Jhamtani</p>
+                                        <p class="text-gray-900 dark:text-gray-200 whitespace-no-wrap">{{item.first_name}}  {{item.middle_name}}</p>
                                     </div>
                                 </div>
                             </td>
                             <td class="px-5 py-5 border-b border-gray-200 dark:border-gray-700 text-sm">
-                                <p class="text-gray-900 dark:text-gray-200 whitespace-no-wrap">210400011</p>
+                                <p class="text-gray-900 dark:text-gray-200 whitespace-no-wrap">{{item.enrollment_no}}</p>
                             </td>
                             <td class="px-5 py-5 border-b border-gray-200 dark:border-gray-700 text-sm">
-                                <p class="text-gray-900 dark:text-gray-200 whitespace-no-wrap">CE</p>
+                                <p class="text-gray-900 dark:text-gray-200 whitespace-no-wrap">{{item.expand?.department.name ?? '-' }}</p>
                             </td>
                             <td class="px-5 py-5 border-b border-gray-200 dark:border-gray-700 text-sm">
                                 <span class="relative inline-block px-3 py-1 font-semibold dark:text-green-200 text-green-900 leading-tight">
@@ -90,126 +92,7 @@
                                 </button>
                             </td>
                         </tr>
-                        
-
-                        <tr class="bg-white dark:bg-gray-800">
-                            <td class="px-5 py-5 border-b border-gray-200 dark:border-gray-700 text-sm">
-                                <div class="flex items-center">
-                                    <div class="flex-shrink-0 w-10 h-10">
-                                        <img class="w-full h-full rounded-full"
-                                            src="https://images.unsplash.com/photo-1570126618953-d437176e8c79?q=80&w=1994&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                                            alt="" />
-                                    </div>
-                                    <div class="ml-3">
-                                        <p class="text-gray-900 dark:text-gray-200 whitespace-no-wrap">Aryan Thakor</p>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="px-5 py-5 border-b border-gray-200 dark:border-gray-700 text-sm">
-                                <p class="text-gray-900 dark:text-gray-200 whitespace-no-wrap">210400011</p>
-                            </td>
-                            <td class="px-5 py-5 border-b border-gray-200 dark:border-gray-700 text-sm">
-                                <p class="text-gray-900 dark:text-gray-200 whitespace-no-wrap">CE</p>
-                            </td>
-                            <td class="px-5 py-5 border-b border-gray-200 dark:border-gray-700 text-sm">
-                                <span class="relative inline-block px-3 py-1 font-semibold dark:text-green-200 text-green-900 leading-tight">
-                                    <span aria-hidden class="absolute inset-0 bg-green-200 dark:bg-green-800 opacity-50 rounded-full"></span>
-                                    <span class="relative dark:text-green-200">Active</span>
-                                </span>
-                            </td>
-                            <td class="px-5 py-5 border-b border-gray-200 dark:border-gray-700 text-sm">
-                                <span class="relative inline-block px-3 py-1 font-semibold dark:text-green-200 text-green-900 leading-tight">
-                                    <span aria-hidden class="absolute inset-0 bg-green-200 dark:bg-green-800 opacity-50 rounded-full"></span>
-                                    <span class="relative dark:text-green-200">YES</span>
-                                </span>
-                            </td>
-                            <td class="px-5 py-5 border-b border-gray-200 dark:border-gray-700 text-sm">
-                                <button
-                                    class="bg-indigo-600 px-4 py-2 rounded-md text-white font-semibold tracking-wide cursor-pointer hover:bg-indigo-700">
-                                    View Profile
-                                </button>
-                            </td>
-                        </tr>
-
-
-                        <tr class="bg-white dark:bg-gray-800">
-                            <td class="px-5 py-5 border-b border-gray-200 dark:border-gray-700 text-sm">
-                                <div class="flex items-center">
-                                    <div class="flex-shrink-0 w-10 h-10">
-                                        <img class="w-full h-full rounded-full"
-                                            src="https://images.unsplash.com/photo-1570126618953-d437176e8c79?q=80&w=1994&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                                            alt="" />
-                                    </div>
-                                    <div class="ml-3">
-                                        <p class="text-gray-900 dark:text-gray-200 whitespace-no-wrap">Student123</p>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="px-5 py-5 border-b border-gray-200 dark:border-gray-700 text-sm">
-                                <p class="text-gray-900 dark:text-gray-200 whitespace-no-wrap">210400011</p>
-                            </td>
-                            <td class="px-5 py-5 border-b border-gray-200 dark:border-gray-700 text-sm">
-                                <p class="text-gray-900 dark:text-gray-200 whitespace-no-wrap">CE</p>
-                            </td>
-                            <td class="px-5 py-5 border-b border-gray-200 dark:border-gray-700 text-sm">
-                                <span class="relative inline-block px-3 py-1 font-semibold dark:text-green-200 text-green-900 leading-tight">
-                                    <span aria-hidden class="absolute inset-0 bg-green-200 dark:bg-green-800 opacity-50 rounded-full"></span>
-                                    <span class="relative dark:text-green-200">Active</span>
-                                </span>
-                            </td>
-                            <td class="px-5 py-5 border-b border-gray-200 dark:border-gray-700 text-sm">
-                                <span class="relative inline-block px-3 py-1 font-semibold dark:text-green-200 text-green-900 leading-tight">
-                                    <span aria-hidden class="absolute inset-0 bg-green-200 dark:bg-green-800 opacity-50 rounded-full"></span>
-                                    <span class="relative dark:text-green-200">YES</span>
-                                </span>
-                            </td>
-                            <td class="px-5 py-5 border-b border-gray-200 dark:border-gray-700 text-sm">
-                                <button
-                                    class="bg-indigo-600 px-4 py-2 rounded-md text-white font-semibold tracking-wide cursor-pointer hover:bg-indigo-700">
-                                    View Profile
-                                </button>
-                            </td>
-                        </tr>
-
-
-                        <tr class="bg-white dark:bg-gray-800">
-                            <td class="px-5 py-5 border-b border-gray-200 dark:border-gray-700 text-sm">
-                                <div class="flex items-center">
-                                    <div class="flex-shrink-0 w-10 h-10">
-                                        <img class="w-full h-full rounded-full"
-                                            src="https://images.unsplash.com/photo-1570126618953-d437176e8c79?q=80&w=1994&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                                            alt="" />
-                                    </div>
-                                    <div class="ml-3">
-                                        <p class="text-gray-900 dark:text-gray-200 whitespace-no-wrap">Student123</p>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="px-5 py-5 border-b border-gray-200 dark:border-gray-700 text-sm">
-                                <p class="text-gray-900 dark:text-gray-200 whitespace-no-wrap">210400011</p>
-                            </td>
-                            <td class="px-5 py-5 border-b border-gray-200 dark:border-gray-700 text-sm">
-                                <p class="text-gray-900 dark:text-gray-200 whitespace-no-wrap">CE</p>
-                            </td>
-                            <td class="px-5 py-5 border-b border-gray-200 dark:border-gray-700 text-sm">
-                                <span class="relative inline-block px-3 py-1 font-semibold dark:text-green-200 text-green-900 leading-tight">
-                                    <span aria-hidden class="absolute inset-0 bg-green-200 dark:bg-green-800 opacity-50 rounded-full"></span>
-                                    <span class="relative dark:text-green-200">Active</span>
-                                </span>
-                            </td>
-                            <td class="px-5 py-5 border-b border-gray-200 dark:border-gray-700 text-sm">
-                                <span class="relative inline-block px-3 py-1 font-semibold dark:text-green-200 text-green-900 leading-tight">
-                                    <span aria-hidden class="absolute inset-0 bg-green-200 dark:bg-green-800 opacity-50 rounded-full"></span>
-                                    <span class="relative dark:text-green-200">YES</span>
-                                </span>
-                            </td>
-                            <td class="px-5 py-5 border-b border-gray-200 dark:border-gray-700 text-sm">
-                                <button
-                                    class="bg-indigo-600 px-4 py-2 rounded-md text-white font-semibold tracking-wide cursor-pointer hover:bg-indigo-700">
-                                    View Profile
-                                </button>
-                            </td>
-                        </tr>
+                    </ng-container>
                     </tbody>
                 </table>
                 <div
