@@ -23,33 +23,29 @@ export class AddStudentComponent {
       current_sem: ['', Validators.required],
       student_contact: ['', Validators.required],
       parent_contact: ['', Validators.required],
-      college_id: ['', Validators.required],
+      college_id: ['14', Validators.required],
       home_town: ['', Validators.required],
       current_town: ['', Validators.required],
-      permanent_addr: ['', Validators.required],
+      permanent_addr: [''],
       current_addr: ['', Validators.required],
-      department: ['', Validators.required],
       enrollment_no: ['', Validators.required]
     });
   }
 
-  submitForm(): void {
+  submitStudentForm(): void {
     if (this.studentForm.valid) {
       this.commonApiService.postRequest('/api/collections/Student/records', this.studentForm.value)
         .subscribe((res: any) => {
           console.log('Response from server:', res);
-          // Handle response as needed
         }, (error) => {
           console.error('Error:', error);
-          // Handle error
         });
     } else {
-      // Mark all fields as touched to display validation errors
       this.studentForm.markAllAsTouched();
+      console.log(this.studentForm.value)
     }
   }
 
-  // Helper method to access form controls easily in the HTML template
   get formControls() {
     return this.studentForm.controls;
   }
