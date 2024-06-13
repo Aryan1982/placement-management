@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { CommonService } from 'src/app/services/common.service';
 import { CommonApiService } from 'src/app/services/commonApi.service';
 
@@ -11,7 +12,8 @@ export class StudentListComponent implements OnInit {
   studentList: any;
   constructor(
     private commonApiService:CommonApiService,
-    public commonService:CommonService
+    public commonService:CommonService,
+    private router:Router
   ){}
   ngOnInit(): void {
     // this.commonApiService.getRequest('/api/collections/StudentData/records').subscribe((res:any)=>{
@@ -28,5 +30,9 @@ export class StudentListComponent implements OnInit {
       this.studentList = this.studentList.reverse();
 
     })
+  }
+
+  routeToProfile(id:number){
+    this.router.navigateByUrl(`/studentprofile/${id}`)
   }
 }

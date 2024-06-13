@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { CommonApiService } from 'src/app/services/commonApi.service';
 
 @Component({
@@ -7,15 +8,21 @@ import { CommonApiService } from 'src/app/services/commonApi.service';
   styleUrls: ['./companyProfile.component.scss']
 })
 export class CompanyProfile {
-  studentData: any;
+  companyData: any;
+  comapanyId: string | undefined;
+
   constructor(
-    private commonApiService:CommonApiService
-  ){}
+    private commonApiService: CommonApiService,
+    private route: ActivatedRoute
+  ) { }
+
   ngOnInit(): void {
-    // this.commonApiService.getRequest('/api/collections/StudentData/records').subscribe((res:any)=>{
-    //   this.studentData = res.items;
-    //   // console.log(res.items[0].)
-    // })
+    this.comapanyId = this.route.snapshot.paramMap.get('id')!;
+
+    this.commonApiService.getRequest(`/api/collections/CompanyDetails/records/${this.comapanyId}`).subscribe((res: any) => {
+      this.companyData = res;
+      console.log(res)
+    });
   }
 
 }

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Route, Router } from '@angular/router';
 import { CommonService } from 'src/app/services/common.service';
 
 @Component({
@@ -8,8 +9,12 @@ import { CommonService } from 'src/app/services/common.service';
 })
 export class CompanyListComponent {
   constructor(
-    public commonService:CommonService,
-  ){
+    public commonService: CommonService,
+    private router: Router
+  ) {
+  }
 
+  nagivteToCompanyProfile(id:number){
+    this.router.navigateByUrl(`companyprofile/${id}`)
   }
 }

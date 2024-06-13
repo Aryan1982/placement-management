@@ -10,8 +10,8 @@ const routes: Routes = [
     children: [
       { path: 'studentlist', loadChildren: () => import('../../Student/student-list/student-list.module').then(m => m.StudentListModule) },
       { path: 'companylist', loadChildren: () => import('../../Company/company-list/company-list.module').then(m => m.CompanyListModule) },
-      { path: 'studentprofile', loadChildren: () => import('../../Student/studentProfile/studentProfile.module').then(m => m.StudentProfileModule) },
-      { path: 'companyprofile', loadChildren: () => import('../../Company/companyProfile/companyProfile.module').then(m => m.CompanyProfileModule) },
+      { path: 'studentprofile/:id', loadChildren: () => import('../../Student/studentProfile/studentProfile.module').then(m => m.StudentProfileModule) },
+      { path: 'companyprofile/:id', loadChildren: () => import('../../Company/companyProfile/companyProfile.module').then(m => m.CompanyProfileModule) },
       { path: 'add-student', loadChildren: () => import('../../Student/add-student/add-student.module').then(m => m.AddStudentModule) },
       { path: 'add-company', loadChildren: () => import('../../Company/add-company/add-company.module').then(m => m.AddCompanyModule) },
       // Other child routes can be added here if needed

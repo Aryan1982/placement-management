@@ -2,41 +2,38 @@
     <div class="py-8 px-4 mx-auto max-w-2xl lg:py-16">
         <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">Student Details</h2>
         <div class="bg-white rounded-lg w-full p-6">
-            <h1 class="text-4xl font-semibold mb-2">Dev Jhamtani</h1>
+            <h1 class="text-4xl font-semibold mb-2">{{ studentData?.first_name }} {{ studentData?.middle_name }} {{
+                studentData?.last_name }}</h1>
             <p class="text-xl font-medium text-gray-600 mb-4">Student</p>
-        
+
             <hr class="my-6">
-        
+
             <h2 class="text-2xl font-semibold mb-4">Summary</h2>
-            <p class="text-lg text-gray-700 mb-6">Experienced student with a passion for learning and academic excellence.</p>
-        
+            <p class="text-lg text-gray-700 mb-6">Experienced student with a passion for learning and academic
+                excellence.</p>
+
             <h2 class="text-2xl font-semibold mb-4">Contact</h2>
             <ul class="list-disc list-inside text-lg text-gray-700 mb-4">
-                <li>Email: test@example.com</li>
-                <li>Student Contact: 123</li>
-                <li>Parent Contact: 123</li>
+                <li>Email: {{ studentData.email }}</li>
+                <li>Student Contact: {{ studentData.student_contact }}</li>
+                <li>Parent Contact: {{ studentData.parent_contact }}</li>
             </ul>
-        
+
             <h2 class="text-2xl font-semibold mb-4">Address</h2>
             <div class="mb-8">
-                <p class="text-lg text-gray-700 mb-2">Home Town: test</p>
-                <p class="text-lg text-gray-700 mb-2">Current Town: test</p>
-                <p class="text-lg text-gray-700 mb-2">Permanent Address: test</p>
-                <p class="text-lg text-gray-700 mb-2">Current Address: test</p>
+                <p class="text-lg text-gray-700 mb-2">Home Town: {{ studentData.home_town }}</p>
+                <p class="text-lg text-gray-700 mb-2">Current Town: {{ studentData.current_town }}</p>
+                <p class="text-lg text-gray-700 mb-2">Permanent Address: {{ studentData.permanent_addr }}</p>
+                <p class="text-lg text-gray-700 mb-2">Current Address: {{ studentData.current_addr }}</p>
             </div>
-        
+
             <h2 class="text-2xl font-semibold mb-4">Enrollment Information</h2>
             <div class="mb-8">
-                <p class="text-lg text-gray-700 mb-2">Department: RELATION_RECORD_ID</p>
-                <p class="text-lg text-gray-700 mb-2">College ID: 123</p>
-                <p class="text-lg text-gray-700 mb-2">Current Semester: 123</p>
-                <p class="text-lg text-gray-700 mb-2">Enrollment Number: test</p>
+                <p class="text-lg text-gray-700 mb-2">Department: {{ studentData.branch }}</p>
+                <p class="text-lg text-gray-700 mb-2">College ID: {{ studentData.college_id }}</p>
+                <p class="text-lg text-gray-700 mb-2">Current Semester: {{ studentData.current_sem }}</p>
+                <p class="text-lg text-gray-700 mb-2">Enrollment Number: {{ studentData.enrollment_no }}</p>
             </div>
-        
-            <!-- <button class="bg-blue-500 text-white font-semibold py-3 px-6 rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600">Apply to this student</button> -->
         </div>
-        
-        
-
     </div>
-  </section>
+</section>
