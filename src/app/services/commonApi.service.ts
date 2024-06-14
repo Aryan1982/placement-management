@@ -11,13 +11,13 @@ export class CommonApiService {
 
   constructor(
     private http: HttpClient
-    ) {}
+  ) { }
 
-  getRequest(url:string): Observable<any>{
+  getRequest(url: string): Observable<any> {
     return this.http.get(`${this.apiUrl}/${url}`)
   }
 
-  postRequest(url:string,data:any): Observable<any>{
+  postRequest(url: string, data: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/${url}`, data)
   }
 }

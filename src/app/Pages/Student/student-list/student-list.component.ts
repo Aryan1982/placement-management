@@ -11,20 +11,20 @@ import { CommonApiService } from 'src/app/services/commonApi.service';
 export class StudentListComponent implements OnInit {
   studentList: any;
   constructor(
-    private commonApiService:CommonApiService,
-    public commonService:CommonService,
-    private router:Router
-  ){}
+    private commonApiService: CommonApiService,
+    public commonService: CommonService,
+    private router: Router
+  ) { }
   ngOnInit(): void {
     // this.commonApiService.getRequest('/api/collections/StudentData/records').subscribe((res:any)=>{
-      //   console.log(res)
-      // })
-      this.getStudents()
-    }
-    
-    getStudents(){
+    //   console.log(res)
+    // })
+    this.getStudents()
+  }
+
+  getStudents() {
     console.log('getstudents')
-    this.commonApiService.getRequest('api/collections/Student/records?expand=department').subscribe((res:any)=>{
+    this.commonApiService.getRequest('api/collections/Student/records?expand=department').subscribe((res: any) => {
       this.studentList = res.items;
       console.log(this.studentList)
       this.studentList = this.studentList.reverse();
@@ -32,7 +32,7 @@ export class StudentListComponent implements OnInit {
     })
   }
 
-  routeToProfile(id:number){
+  routeToProfile(id: number) {
     this.router.navigateByUrl(`/studentprofile/${id}`)
   }
 }

@@ -7,26 +7,26 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class CommonService {
-  theme:string = 'light';
-  constructor() {}
+  theme: string = 'light';
+  constructor() { }
 
-  getTheme(){
+  getTheme() {
     return this.theme;
   }
 
-  setTheme(name:string){
+  setTheme(name: string) {
     this.theme = name;
   }
 
-  getUserRole(){
+  getUserRole() {
     const userString = localStorage.getItem('userRecord');
-  
-      if (userString) {
-        // Parse the string to an object
-        const user = JSON.parse(userString);
-        
-        // Access the role property
-        return user.role;
-      }
+
+    if (userString) {
+      // Parse the string to an object
+      const user = JSON.parse(userString);
+
+      // Access the role property
+      return user.role;
+    }
   }
 }
