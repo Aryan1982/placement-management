@@ -1,19 +1,23 @@
 // add-student.component.ts
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CommonApiService } from 'src/app/services/commonApi.service';
 
 @Component({
   selector: 'app-add-student',
   templateUrl: './add-student.component.html',
-  styleUrls: ['./add-student.component.scss']
+  styleUrls: ['./add-student.component.scss'],
 })
 export class AddStudentComponent {
   studentForm: FormGroup;
+  studentId!: string;
 
   constructor(
     private formBuilder: FormBuilder,
-    private commonApiService: CommonApiService
+    private commonApiService: CommonApiService,
+    private route: ActivatedRoute,
+    private router: Router
   ) {
     this.studentForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
@@ -28,22 +32,61 @@ export class AddStudentComponent {
       current_town: ['', Validators.required],
       permanent_addr: [''],
       current_addr: ['', Validators.required],
-      enrollment_no: ['', Validators.required]
+      enrollment_no: ['', Validators.required],
     });
   }
 
-  submitStudentForm(): void {
-    if (this.studentForm.valid) {
-      this.commonApiService.postRequest('/api/collections/Student/records', this.studentForm.value)
-        .subscribe((res: any) => {
-          console.log('Response from server:', res);
-        }, (error) => {
-          console.error('Error:', error);
-        });
-    } else {
-      this.studentForm.markAllAsTouched();
-      console.log(this.studentForm.value)
+  ngOnInit() {
+    this.studentId = this.route.snapshot.paramMap.get('id')!;
+    if (this.studentId) {
+      this.getStudentDetails();
     }
+  }
+
+  getStudentDetails() {
+    this.commonApiService
+      .getRequest(`/api/collections/Student/records/${this.studentId}`)
+      .subscribe((res: any) => {
+        this.studentForm.patchValue({
+          email: res.email,
+          first_name: res.first_name,
+          middle_name: res.middle_name,
+          last_name: res.last_name,
+          current_sem: res.current_sem,
+          student_contact: res.student_contact,
+          parent_contact: res.parent_contact,
+          college_id: res.college_id,
+          home_town: res.home_town,
+          current_town: res.current_town,
+          permanent_addr: res.permanent_addr,
+          current_addr: res.current_addr,
+          enrollment_no: res.enrollment_no,
+        });
+      });
+  }
+  submitStudentForm(): void {
+    if (this.studentForm.invalid) {
+      alert('fill all the fields');
+      this.studentForm.markAllAsTouched();
+      return;
+    }
+    if (this.studentId) {
+      this.commonApiService
+        .patchRequest(
+          `/api/collections/Student/records/${this.studentId}`,
+          this.studentForm.value
+        )
+        .subscribe((response) => {
+          this.router.navigateByUrl('/studentlist');
+        });
+      return;
+    }
+
+    this.commonApiService
+      .postRequest('/api/collections/Student/records', this.studentForm.value)
+      .subscribe((res: any) => {
+        this.router.navigateByUrl('/studentlist');
+      });
   }
 
   get formControls() {

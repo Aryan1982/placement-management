@@ -35,4 +35,8 @@ export class StudentListComponent implements OnInit {
   routeToProfile(id: number) {
     this.router.navigateByUrl(`/studentprofile/${id}`)
   }
+
+  editProfile(studentId: number){
+    this.router.navigateByUrl(`/add-student/${studentId}`)
+  }
 }

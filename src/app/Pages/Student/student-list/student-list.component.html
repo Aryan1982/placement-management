@@ -48,6 +48,10 @@
                                 class="px-5 py-3 border-b-2 border-gray-200 dark:border-gray-600 bg-gray-100 dark:bg-gray-600 text-left text-xs font-semibold text-gray-600 dark:text-gray-300 uppercase tracking-wider">
                                 Action
                             </th>
+                            <th *ngIf="commonService.getUserRole() == 'ADMIN'"
+                                class="px-5 py-3 border-b-2 border-gray-200 dark:border-gray-600 bg-gray-100 dark:bg-gray-600 text-left text-xs font-semibold text-gray-600 dark:text-gray-300 uppercase tracking-wider">
+                                Edit Details
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -94,6 +98,12 @@
                                     <button (click)="routeToProfile(item.id)"
                                         class="bg-indigo-600 px-4 py-2 rounded-md text-white font-semibold tracking-wide cursor-pointer hover:bg-indigo-700">
                                         View Profile
+                                    </button>
+                                </td>
+                                <td class="px-5 py-5 border-b border-gray-200 dark:border-gray-700 text-sm">
+                                    <button (click)="editProfile(item.id)"
+                                        class="bg-indigo-600 px-4 py-2 rounded-md text-white font-semibold tracking-wide cursor-pointer hover:bg-indigo-700">
+                                        Edit Profile
                                     </button>
                                 </td>
 
