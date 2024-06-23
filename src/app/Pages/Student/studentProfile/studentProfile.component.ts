@@ -19,7 +19,7 @@ export class StudentProfileComponent implements OnInit {
   ngOnInit(): void {
     // Get the student ID from the route parameters
     this.studentId = this.route.snapshot.paramMap.get('id')!;
-
+    
     this.commonApiService.getRequest(`/api/collections/Student/records/${this.studentId}`).subscribe((res: any) => {
       this.studentData = res;
       console.log(res)

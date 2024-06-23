@@ -38,7 +38,7 @@ export class AddCompanyComponent {
     //   if (brochureControl && brochureControl.value instanceof File) {
     //   }
     if (this.companyForm.valid) {
-  
+
       // Append regular form fields
       // Object.keys(this.companyForm.controls).forEach(key => {
       //   if (key !== 'brochure') {
@@ -47,7 +47,7 @@ export class AddCompanyComponent {
       // });
       const selectedEligibleCourses = this.companyForm.get('eligible_courses')?.value;
       console.log('Selected Eligible Courses:', selectedEligibleCourses);
-      
+
       this.commonApiService.postRequest('/api/collections/CompanyDetails/records', this.companyForm.value)
         .subscribe(
           (response) => {
