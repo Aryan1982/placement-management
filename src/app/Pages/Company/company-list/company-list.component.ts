@@ -6,31 +6,33 @@ import { CommonApiService } from 'src/app/services/commonApi.service';
 @Component({
   selector: 'app-company-list',
   templateUrl: './company-list.component.html',
-  styleUrls: ['./company-list.component.scss']
+  styleUrls: ['./company-list.component.scss'],
 })
-
 export class CompanyListComponent implements OnInit {
-  public companyList: any
+  public companyList: any;
   constructor(
     public commonService: CommonService,
     public commonApiService: CommonApiService,
     private router: Router
-  ) {
-  }
+  ) {}
   ngOnInit(): void {
     this.getCompanyData();
   }
 
   getCompanyData() {
-    console.log('getCompanies')
-    this.commonApiService.getRequest('/api/collections/CompanyDetails/records').subscribe((res: any) => {
-      this.companyList = res.items;
-      console.log(this.companyList)
-      this.companyList = this.companyList.reverse();
-    })
+    this.commonApiService
+      .getRequest('/api/collections/CompanyDetails/records')
+      .subscribe((res: any) => {
+        this.companyList = res.items;
+        this.companyList = this.companyList.reverse();
+      });
   }
 
   nagivteToCompanyProfile(id: number) {
-    this.router.navigateByUrl(`companyprofile/${id}`)
+    this.router.navigateByUrl(`companyprofile/${id}`);
+  }
+
+  editCompanyPost(id: number) {
+    this.router.navigateByUrl(`/add-company/${id}`)
   }
 }

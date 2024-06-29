@@ -20,4 +20,8 @@ export class CommonApiService {
   postRequest(url: string, data: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/${url}`, data)
   }
+
+  patchRequest(url: string, data: any): Observable<any> {
+    return this.http.patch(`${this.apiUrl}/${url}`, data)
+  }
 }

@@ -26,8 +26,16 @@ export class LoginComponent {
     this.commonApiService.postRequest("api/collections/users/auth-with-password", this.loginForm.value)
       .subscribe({
         next: (res: any) => {
-          localStorage.setItem('userRecord', JSON.stringify(res.record) )
-          this.router.navigateByUrl('/companylist');
+          if(res.record.role.toLowerCase() == "student"){
+            
+            this.commonApiService.getRequest(`/api/collections/Student/records?filter=(email="${res.record.email}")`).subscribe((student:any)=>{
+              console.log(student.items[0].id)
+              res.record.studentId = student.items[0].id
+              localStorage.setItem('userRecord', JSON.stringify(res.record) )
+              return
+            })
+          }
+          localStorage.setItem('userRecord', JSON.stringify(res.record))
         },
         error: (error) => {
           console.error("An error occurred:", error);
