@@ -57,7 +57,7 @@
                     <tbody>
                         <ng-container *ngFor="let item of companyList">
 
-                            <tr class="bg-white dark:bg-gray-800">
+                            <tr class="bg-white dark:bg-gray-800" (click)="nagivteToCompanyProfile(item.id)">
                                 <td class="px-5 py-5 border-b border-gray-200 dark:border-gray-700 text-sm">
                                     <div class="flex items-center cursor-pointer" (click)="nagivteToCompanyProfile(item.id)" >
                                         <div class="flex-shrink-0 w-10 h-10">
@@ -96,8 +96,15 @@
                                 </td>
                                 <td class="px-5 py-5 border-b border-gray-200 dark:border-gray-700 text-sm">
                                     <button (click)="nagivteToCompanyProfile(item.id)" routerLink="/companyprofile"
-                                        *ngIf="commonService.getUserRole() == 'STUDENT'"
+                                        *ngIf="commonService.getUserRole() == 'STUDENT' && item.hasApplied"
                                         class="bg-indigo-600 px-4 py-2 rounded-md text-white font-semibold tracking-wide cursor-pointer hover:bg-indigo-700">
+                                        
+                                        Applied
+                                    </button>
+                                    <button (click)="nagivteToCompanyProfile(item.id)" routerLink="/companyprofile"
+                                        *ngIf="commonService.getUserRole() == 'STUDENT' && !item.hasApplied"
+                                        class="bg-indigo-600 px-4 py-2 rounded-md text-white font-semibold tracking-wide cursor-pointer hover:bg-indigo-700">
+                                        
                                         Apply
                                     </button>
                                     <button *ngIf="commonService.getUserRole() == 'ADMIN'"
