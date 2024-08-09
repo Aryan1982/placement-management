@@ -10,15 +10,36 @@ import { CommonApiService } from 'src/app/services/commonApi.service';
 })
 export class CompanyListComponent implements OnInit {
   public companyList: any;
+  studentId: any;
   constructor(
     public commonService: CommonService,
     public commonApiService: CommonApiService,
     private router: Router
   ) {}
   ngOnInit(): void {
-    this.getCompanyData();
+    const userRecordString = localStorage.getItem('userRecord');
+    if (userRecordString) {
+      this.studentId = JSON.parse(userRecordString).studentId;
+    }
+
+    if (!this.studentId) {
+      this.getCompanyData();
+      return;
+    }
+    this.getCompanyListForStudent();
   }
 
+  getCompanyListForStudent() {
+    this.commonApiService
+      .getCompaniesWithApplicationStatus(this.studentId)
+      .then((companies: any) => {
+        this.companyList = companies;
+      })
+      .catch((error: any) => {
+        console.error('Error fetching companies:', error);
+      });
+  }
+  
   getCompanyData() {
     this.commonApiService
       .getRequest('/api/collections/CompanyDetails/records')
@@ -33,6 +54,6 @@ export class CompanyListComponent implements OnInit {
   }
 
   editCompanyPost(id: number) {
-    this.router.navigateByUrl(`/add-company/${id}`)
+    this.router.navigateByUrl(`/add-company/${id}`);
   }
 }

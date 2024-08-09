@@ -17,4 +17,11 @@ export class DashboardComponent {
     localStorage.clear()
     this.router.navigateByUrl('/')
   }
+
+  routeToProfile(){
+    const userString:any = localStorage.getItem('userRecord');
+    const record = JSON.parse(userString) 
+    console.log(record)
+    this.router.navigateByUrl(`/studentprofile/${record.studentId}`)
+  }
 }

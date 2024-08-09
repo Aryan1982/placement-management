@@ -2,43 +2,54 @@
     <div class="py-8 px-4 mx-auto max-w-5xl lg:py-16">
         <h1 class="mb-4 text-3xl font-bold text-gray-900 dark:text-white">Company Details</h1>
         <div class="bg-white rounded-lg w-full p-4 border border-gray-500">
-            <h1 class="text-3xl font-semibold">{{ companyData.name }}</h1>
-            <p class="text-gray-600">{{ companyData.summary }}</p>
+            <h1 class="text-3xl font-semibold">{{ companyData?.name }}</h1>
+
+            <p class="text-gray-600">{{ companyData?.summary }}</p>
 
             <hr class="my-4">
 
             <h2 class="text-xl font-semibold mb-2">Summary</h2>
-            <p class="text-gray-700">{{ companyData.summary }}</p>
+            <p class="text-gray-700">{{ companyData?.summary }}</p>
 
             <h2 class="text-xl font-semibold mt-4 mb-2">Eligible Courses</h2>
             <ul class="list-disc list-inside text-gray-700">
-                <li>{{ companyData.eligible_courses }}</li>
+                <li>{{ companyData?.eligible_courses }}</li>
             </ul>
 
             <h2 class="text-xl font-semibold mt-4 mb-2">Eligible Criteria</h2>
-            <p class="text-gray-700">{{ companyData.eligible_criteria }}</p>
+            <p class="text-gray-700">{{ companyData?.eligible_criteria }}</p>
 
             <h2 class="text-xl font-semibold mt-4 mb-2">Selection Process Details</h2>
-            <p class="text-gray-700">{{ companyData.selection_process_details }}</p>
+            <p class="text-gray-700">{{ companyData?.selection_process_details }}</p>
 
             <h2 class="text-xl font-semibold mt-4 mb-2">Expected Openings</h2>
-            <p class="text-gray-700">{{ companyData.expected_openings }}</p>
+            <p class="text-gray-700">{{ companyData?.expected_openings }}</p>
 
             <h2 class="text-xl font-semibold mt-4 mb-2">Contact</h2>
             <ul class="list-disc list-inside text-gray-700">
-                <li>Email 1: {{ companyData.email1 }}</li>
-                <li>Email 2: {{ companyData.email2 }}</li>
-                <li>Phone: {{ companyData.phone }}</li>
-                <li>Website: <a [href]="companyData.website" class="text-blue-500 hover:underline">{{
-                        companyData.website }}</a></li>
+                <li>Email 1: {{ companyData?.email1 }}</li>
+                <li>Email 2: {{ companyData?.email2 }}</li>
+                <li>Phone: {{ companyData?.phone }}</li>
+                <li>Website: <a [href]="companyData?.website" class="text-blue-500 hover:underline">{{
+                        companyData?.website }}</a></li>
             </ul>
         </div>
 
         <div class="mt-4 flex justify-end">
-            <button
+            <button *ngIf="commonService.getUserRole() == 'STUDENT' && hasApplied " (click)="applyToCompany()"
+                class="bg-blue-500 text-white font-semibold px-4 py-2 rounded hover:bg-blue-600 focus:outline-none focus:bg-blue-600">
+                Applied
+            </button>
+            <button *ngIf="commonService.getUserRole() == 'STUDENT' && !hasApplied " (click)="applyToCompany()"
                 class="bg-blue-500 text-white font-semibold px-4 py-2 rounded hover:bg-blue-600 focus:outline-none focus:bg-blue-600">
                 Apply
             </button>
         </div>
     </div>
 </section>
+<!-- applyToCompany(
+    {
+        student_id:'mfagrh12c65hf0i',
+    company_id:'qkn4mp3zd9byrnk'
+    }
+) -->
