@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
 import { CommonApiService } from 'src/app/services/commonApi.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -30,19 +29,19 @@ export class AddFacultyComponent {
   ngOnInit(){
       this.facultyId = this.route.snapshot.paramMap.get('id')!;
       if(this.facultyId){
-        this.getCompanyDetails()
+        this.getFacultyDetails()
         console.log(this.facultyId)
       }
       this.getBranches()
   }
 
-  getCompanyDetails(){
-    this.commonApiService.getRequest(`/api/collections/Companies/records/${this.facultyId}`).subscribe((res)=>{
+  getFacultyDetails(){
+    this.commonApiService.getRequest(`/api/collections/Faculty_cordinators/records/${this.facultyId}`).subscribe((res)=>{
       this.facultyForm.patchValue({
       name: res.name,
-      branch:res.mode_of_contact,
-      email: res.contact_person,
-      faculty_id: res.phone_no,
+      branch:res.branch,
+      email: res.email,
+      faculty_id: res.faculty_id,
       });
     })
   }
@@ -61,10 +60,10 @@ export class AddFacultyComponent {
     }
     
     if(this.facultyId){
-      this.commonApiService.patchRequest(`/api/collections/Companies/records/${this.facultyId}`, this.facultyForm.value)
+      this.commonApiService.patchRequest(`/api/collections/Faculty_cordinators/records/${this.facultyId}`, this.facultyForm.value)
         .subscribe(
           (response) => {
-            this.router.navigateByUrl('/companylist')
+            this.router.navigateByUrl('/faculty-list')
           },
           (error) => {
             console.error('Error submitting form:', error);
@@ -76,7 +75,7 @@ export class AddFacultyComponent {
     this.commonApiService.postRequest('/api/collections/Faculty_cordinators/records', this.facultyForm.value)
       .subscribe(
         (response) => {
-          // this.router.navigateByUrl('/companylist')
+          this.router.navigateByUrl('/faculty-list')
         },
         (error) => {
           console.error('Error submitting form:', error);
