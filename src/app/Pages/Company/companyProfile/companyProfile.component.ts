@@ -33,7 +33,7 @@ export class CompanyProfile {
     this.isStudentApplied();
     if (this.companyId) {
       this.commonApiService
-        .getRequest(`/api/collections/CompanyDetails/records/${this.companyId}`)
+        .getRequest(`/api/collections/Companies/records/${this.companyId}`)
         .subscribe((res: any) => {
           this.companyData = res;
         });

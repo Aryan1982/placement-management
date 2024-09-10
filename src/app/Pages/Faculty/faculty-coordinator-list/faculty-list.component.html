@@ -1,7 +1,7 @@
 <div class="bg-white dark:bg-gray-800 p-8 rounded-md w-full">
     <div class="flex items-center justify-between pb-6">
         <div>
-            <h2 class="text-gray-600 dark:text-gray-300 font-semibold">Companies</h2>
+            <h2 class="text-gray-600 dark:text-gray-300 font-semibold">Faculty Coordinators</h2>
             <!-- <span class="text-xs text-gray-500 dark:text-gray-400">All products item</span> -->
         </div>
         <div class="flex items-center justify-between">
@@ -13,7 +13,7 @@
                 </button> -->
                 <button routerLink="/add-company" *ngIf="commonService.getUserRole() == 'ADMIN'"
                     class="bg-indigo-600 px-4 py-2 rounded-md text-white font-semibold tracking-wide cursor-pointer hover:bg-indigo-700">
-                    Add Company
+                    Add Faculty
                 </button>
             </div>
         </div>
@@ -26,15 +26,11 @@
                         <tr>
                             <th
                                 class="px-5 py-3 border-b-2 border-gray-200 dark:border-gray-600 bg-gray-100 dark:bg-gray-600 text-left text-xs font-semibold text-gray-600 dark:text-gray-300 uppercase tracking-wider">
-                                Company Name
+                                 Name
                             </th>
                             <th
                                 class="px-5 py-3 border-b-2 border-gray-200 dark:border-gray-600 bg-gray-100 dark:bg-gray-600 text-left text-xs font-semibold text-gray-600 dark:text-gray-300 uppercase tracking-wider">
-                                Website
-                            </th>
-                            <th
-                                class="px-5 py-3 border-b-2 border-gray-200 dark:border-gray-600 bg-gray-100 dark:bg-gray-600 text-left text-xs font-semibold text-gray-600 dark:text-gray-300 uppercase tracking-wider">
-                                Created at
+                                Branch
                             </th>
                             <th
                                 class="px-5 py-3 border-b-2 border-gray-200 dark:border-gray-600 bg-gray-100 dark:bg-gray-600 text-left text-xs font-semibold text-gray-600 dark:text-gray-300 uppercase tracking-wider">
@@ -47,10 +43,6 @@
                             <th
                                 class="px-5 py-3 border-b-2 border-gray-200 dark:border-gray-600 bg-gray-100 dark:bg-gray-600 text-left text-xs font-semibold text-gray-600 dark:text-gray-300 uppercase tracking-wider">
                                 Action
-                            </th>
-                            <th
-                                class="px-5 py-3 border-b-2 border-gray-200 dark:border-gray-600 bg-gray-100 dark:bg-gray-600 text-left text-xs font-semibold text-gray-600 dark:text-gray-300 uppercase tracking-wider">
-                                Edit Company
                             </th>
                         </tr>
                     </thead>
@@ -72,10 +64,7 @@
                                     </div>
                                 </td>
                                 <td class="px-5 py-5 border-b border-gray-200 dark:border-gray-700 text-sm">
-                                    <p class="text-gray-900 dark:text-gray-200 whitespace-no-wrap">{{item.website}}</p>
-                                </td>
-                                <td class="px-5 py-5 border-b border-gray-200 dark:border-gray-700 text-sm">
-                                    <p class="text-gray-900 dark:text-gray-200 whitespace-no-wrap">{{item.created}}</p>
+                                    <p class="text-gray-900 dark:text-gray-200 whitespace-no-wrap">{{item.expand.branch.name}}</p>
                                 </td>
                                 <td class="px-5 py-5 border-b border-gray-200 dark:border-gray-700 text-sm">
                                     <p class="text-gray-900 dark:text-gray-200 whitespace-no-wrap">{{item.email}}</p>
@@ -89,24 +78,7 @@
                                         <span class="relative dark:text-green-200">YES</span>
                                     </span>
                                 </td>
-                                <td class="px-5 py-5 border-b border-gray-200 dark:border-gray-700 text-sm">
-                                    <button (click)="nagivteToCompanyProfile(item.id)" routerLink="/companyprofile"
-                                        *ngIf="commonService.getUserRole() == 'STUDENT' && item.hasApplied"
-                                        class="bg-indigo-600 px-4 py-2 rounded-md text-white font-semibold tracking-wide cursor-pointer hover:bg-indigo-700">
-                                        
-                                        Applied
-                                    </button>
-                                    <button (click)="nagivteToCompanyProfile(item.id)" routerLink="/companyprofile"
-                                        *ngIf="commonService.getUserRole() == 'STUDENT' && !item.hasApplied"
-                                        class="bg-indigo-600 px-4 py-2 rounded-md text-white font-semibold tracking-wide cursor-pointer hover:bg-indigo-700">
-                                        
-                                        Apply
-                                    </button>
-                                    <button *ngIf="commonService.getUserRole() == 'ADMIN'"
-                                        class="bg-indigo-600 px-4 py-2 rounded-md text-white font-semibold tracking-wide cursor-pointer hover:bg-indigo-700">
-                                        Applied Students
-                                    </button>
-                                </td>
+                                
                                 <td class="px-5 py-5 border-b border-gray-200 dark:border-gray-700 text-sm">
                                     <button  (click)="editCompany(item.id)"
                                         *ngIf="commonService.getUserRole() == 'ADMIN'"

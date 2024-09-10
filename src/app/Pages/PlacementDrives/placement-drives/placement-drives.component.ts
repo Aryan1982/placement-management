@@ -4,11 +4,11 @@ import { CommonService } from 'src/app/services/common.service';
 import { CommonApiService } from 'src/app/services/commonApi.service';
 
 @Component({
-  selector: 'app-company-list',
-  templateUrl: './company-list.component.html',
-  styleUrls: ['./company-list.component.scss'],
+  selector: 'app-placement-drives',
+  templateUrl: './placement-drives.component.html',
+  styleUrls: ['./placement-drives.component.scss'],
 })
-export class CompanyListComponent implements OnInit {
+export class PlacementDrivesComponent implements OnInit {
   public companyList: any;
   studentId: any;
   constructor(
@@ -42,9 +42,10 @@ export class CompanyListComponent implements OnInit {
   
   getCompanyData() {
     this.commonApiService
-      .getRequest('/api/collections/Companies/records')
+      .getRequest('/api/collections/JobPosts/records?expand=company,status')
       .subscribe((res: any) => {
         this.companyList = res.items;
+        console.log(this.companyList)
         this.companyList = this.companyList.reverse();
       });
   }
@@ -53,7 +54,7 @@ export class CompanyListComponent implements OnInit {
     this.router.navigateByUrl(`companyprofile/${id}`);
   }
 
-  editCompany(id: number) {
+  editCompanyPost(id: number) {
     this.router.navigateByUrl(`/add-company/${id}`);
   }
 }

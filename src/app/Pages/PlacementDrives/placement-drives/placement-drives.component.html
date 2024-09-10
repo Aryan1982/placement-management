@@ -1,7 +1,7 @@
 <div class="bg-white dark:bg-gray-800 p-8 rounded-md w-full">
     <div class="flex items-center justify-between pb-6">
         <div>
-            <h2 class="text-gray-600 dark:text-gray-300 font-semibold">Companies</h2>
+            <h2 class="text-gray-600 dark:text-gray-300 font-semibold">Placement Drives</h2>
             <!-- <span class="text-xs text-gray-500 dark:text-gray-400">All products item</span> -->
         </div>
         <div class="flex items-center justify-between">
@@ -11,9 +11,9 @@
                     class="bg-indigo-600 px-4 py-2 rounded-md text-white font-semibold tracking-wide cursor-pointer hover:bg-indigo-700">
                     New Report
                 </button> -->
-                <button routerLink="/add-company" *ngIf="commonService.getUserRole() == 'ADMIN'"
+                <button routerLink="/add-placement-drives" *ngIf="commonService.getUserRole() == 'ADMIN'"
                     class="bg-indigo-600 px-4 py-2 rounded-md text-white font-semibold tracking-wide cursor-pointer hover:bg-indigo-700">
-                    Add Company
+                    Add New Drive
                 </button>
             </div>
         </div>
@@ -30,7 +30,7 @@
                             </th>
                             <th
                                 class="px-5 py-3 border-b-2 border-gray-200 dark:border-gray-600 bg-gray-100 dark:bg-gray-600 text-left text-xs font-semibold text-gray-600 dark:text-gray-300 uppercase tracking-wider">
-                                Website
+                                Job Role
                             </th>
                             <th
                                 class="px-5 py-3 border-b-2 border-gray-200 dark:border-gray-600 bg-gray-100 dark:bg-gray-600 text-left text-xs font-semibold text-gray-600 dark:text-gray-300 uppercase tracking-wider">
@@ -38,7 +38,7 @@
                             </th>
                             <th
                                 class="px-5 py-3 border-b-2 border-gray-200 dark:border-gray-600 bg-gray-100 dark:bg-gray-600 text-left text-xs font-semibold text-gray-600 dark:text-gray-300 uppercase tracking-wider">
-                                Email
+                                Status
                             </th>
                             <th *ngIf="commonService.getUserRole() == 'STUDENT'"
                                 class="px-5 py-3 border-b-2 border-gray-200 dark:border-gray-600 bg-gray-100 dark:bg-gray-600 text-left text-xs font-semibold text-gray-600 dark:text-gray-300 uppercase tracking-wider">
@@ -48,9 +48,9 @@
                                 class="px-5 py-3 border-b-2 border-gray-200 dark:border-gray-600 bg-gray-100 dark:bg-gray-600 text-left text-xs font-semibold text-gray-600 dark:text-gray-300 uppercase tracking-wider">
                                 Action
                             </th>
-                            <th
+                            <th *ngIf="commonService.getUserRole() == 'ADMIN'"
                                 class="px-5 py-3 border-b-2 border-gray-200 dark:border-gray-600 bg-gray-100 dark:bg-gray-600 text-left text-xs font-semibold text-gray-600 dark:text-gray-300 uppercase tracking-wider">
-                                Edit Company
+                                Edit post
                             </th>
                         </tr>
                     </thead>
@@ -66,19 +66,24 @@
                                                 alt="" />
                                         </div>
                                         <div class="ml-3">
-                                            <p class="text-gray-900 dark:text-gray-200 whitespace-no-wrap">{{item.name}}
+                                            <p class="text-gray-900 dark:text-gray-200 whitespace-no-wrap">{{item.expand?.company.name}}
                                             </p>
                                         </div>
                                     </div>
                                 </td>
                                 <td class="px-5 py-5 border-b border-gray-200 dark:border-gray-700 text-sm">
-                                    <p class="text-gray-900 dark:text-gray-200 whitespace-no-wrap">{{item.website}}</p>
+                                    <p class="text-gray-900 dark:text-gray-200 whitespace-no-wrap">{{item.job_role}}</p>
                                 </td>
                                 <td class="px-5 py-5 border-b border-gray-200 dark:border-gray-700 text-sm">
                                     <p class="text-gray-900 dark:text-gray-200 whitespace-no-wrap">{{item.created}}</p>
                                 </td>
                                 <td class="px-5 py-5 border-b border-gray-200 dark:border-gray-700 text-sm">
-                                    <p class="text-gray-900 dark:text-gray-200 whitespace-no-wrap">{{item.email}}</p>
+                                    <span
+                                        class="relative inline-block px-3 py-1 font-semibold dark:text-green-200 text-green-900 leading-tight">
+                                        <span aria-hidden
+                                            class="absolute inset-0 bg-green-200 dark:bg-green-800 opacity-50 rounded-full"></span>
+                                        <span class="relative dark:text-green-200">{{item.expand.status.name}}</span>
+                                    </span>
                                 </td>
                                 <td class="px-5 py-5 border-b border-gray-200 dark:border-gray-700 text-sm"
                                     *ngIf="commonService.getUserRole() == 'STUDENT'">
@@ -108,7 +113,7 @@
                                     </button>
                                 </td>
                                 <td class="px-5 py-5 border-b border-gray-200 dark:border-gray-700 text-sm">
-                                    <button  (click)="editCompany(item.id)"
+                                    <button  (click)="editCompanyPost(item.id)"
                                         *ngIf="commonService.getUserRole() == 'ADMIN'"
                                         class="bg-indigo-600 px-4 py-2 rounded-md text-white font-semibold tracking-wide cursor-pointer hover:bg-indigo-700">
                                         Edit

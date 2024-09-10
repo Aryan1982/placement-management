@@ -29,8 +29,10 @@ export class CommonApiService {
 
   getCompaniesWithApplicationStatus(studentId: string) {
     return this.pb
-      .collection('CompanyDetails')
-      .getFullList()
+      .collection('JobPosts')
+      .getFullList({
+        expand: 'company'  
+      })
       .then((companies: any) => {
         return this.pb
           .collection('Applications')

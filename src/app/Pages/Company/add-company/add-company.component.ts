@@ -22,45 +22,46 @@ export class AddCompanyComponent {
   ) {
     this.companyForm = this.fb.group({
       name: ['', Validators.required],
-      website: ['', Validators.required],
-      brochure: [''],
-      email1: ['', [Validators.required, Validators.email]],
-      phone: ['', Validators.required],
+      mode_of_contact: ['', Validators.required],
+      contact_person: [''],
+      phone_no: ['', [Validators.required]],
+      email: ['', Validators.email],
       email2: ['', Validators.email],
-      summary: ['', Validators.required],
-      eligible_courses: [[], Validators.required],
-      eligible_criteria: ['', Validators.required],
-      selection_process_details: ['', Validators.required],
-      expected_openings: ['', Validators.required],
-      company_invitation: ['']
+      remarks: [''],
+      date_contacted: [[], Validators.required],
+      phone2: [''],
+      website: ['', Validators.required],
+      description: [''],
     });
   }
   ngOnInit(){
       this.companyId = this.route.snapshot.paramMap.get('id')!;
       if(this.companyId){
         this.getCompanyDetails()
+        console.log(this.companyId)
       }
   }
 
   getCompanyDetails(){
-    this.commonApiService.getRequest(`/api/collections/CompanyDetails/records/${this.companyId}`).subscribe((res)=>{
+    this.commonApiService.getRequest(`/api/collections/Companies/records/${this.companyId}`).subscribe((res)=>{
       this.companyForm.patchValue({
-        name: res.name,
-        website: res.website,
-        brochure: res.brochure,
-        email1: res.email1,
-        phone: res.phone,
-        email2: res.email2,
-        summary: res.summary,
-        eligible_courses: res.eligible_courses,
-        eligible_criteria: res.eligible_criteria,
-        selection_process_details: res.selection_process_details,
-        expected_openings: res.expected_openings,
-        company_invitation: res.company_invitation
+      name: res.name,
+      mode_of_contact:res.mode_of_contact,
+      contact_person: res.contact_person,
+      phone_no: res.phone_no,
+      email: res.email,
+      email2: res.email2,
+      remarks: res.remarks,
+      date_contacted: res.date_contacted,
+      phone2: res.phone2,
+      website: res.website,
+      description: res.description,
+      brochure: res.brochure,
       });
     })
   }
   onSubmit() {
+    console.log(this.companyForm.value)
     if(this.companyForm.invalid){
       alert('Fill all the details')
       return
@@ -69,7 +70,7 @@ export class AddCompanyComponent {
     console.log('Selected Eligible Courses:', selectedEligibleCourses);
     
     if(this.companyId){
-      this.commonApiService.patchRequest(`/api/collections/CompanyDetails/records/${this.companyId}`, this.companyForm.value)
+      this.commonApiService.patchRequest(`/api/collections/Companies/records/${this.companyId}`, this.companyForm.value)
         .subscribe(
           (response) => {
             this.router.navigateByUrl('/companylist')
@@ -80,7 +81,7 @@ export class AddCompanyComponent {
         );
       return;
     }
-    this.commonApiService.postRequest('/api/collections/CompanyDetails/records', this.companyForm.value)
+    this.commonApiService.postRequest('/api/collections/Companies/records', this.companyForm.value)
       .subscribe(
         (response) => {
           this.router.navigateByUrl('/companylist')

@@ -12,6 +12,7 @@ import { CommonApiService } from 'src/app/services/commonApi.service';
 export class AddStudentComponent {
   studentForm: FormGroup;
   studentId!: string;
+  branches: any;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -33,6 +34,7 @@ export class AddStudentComponent {
       permanent_addr: [''],
       current_addr: ['', Validators.required],
       enrollment_no: ['', Validators.required],
+      branch:['', Validators.required]
     });
   }
 
@@ -41,6 +43,13 @@ export class AddStudentComponent {
     if (this.studentId) {
       this.getStudentDetails();
     }
+    this.getBranches()
+  }
+
+  getBranches(){
+    this.commonApiService.getRequest('api/collections/Branch/records').subscribe((res:any)=>{
+      this.branches = res.items
+    })
   }
 
   getStudentDetails() {
@@ -65,6 +74,7 @@ export class AddStudentComponent {
       });
   }
   submitStudentForm(): void {
+    console.log(this.studentForm)
     if (this.studentForm.invalid) {
       alert('fill all the fields');
       this.studentForm.markAllAsTouched();

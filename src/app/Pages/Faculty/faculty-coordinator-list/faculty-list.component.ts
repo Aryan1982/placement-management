@@ -4,11 +4,11 @@ import { CommonService } from 'src/app/services/common.service';
 import { CommonApiService } from 'src/app/services/commonApi.service';
 
 @Component({
-  selector: 'app-company-list',
-  templateUrl: './company-list.component.html',
-  styleUrls: ['./company-list.component.scss'],
+  selector: 'app-faculty-list',
+  templateUrl: './faculty-list.component.html',
+  styleUrls: ['./faculty-list.component.scss'],
 })
-export class CompanyListComponent implements OnInit {
+export class FacultyListComponent implements OnInit {
   public companyList: any;
   studentId: any;
   constructor(
@@ -42,7 +42,7 @@ export class CompanyListComponent implements OnInit {
   
   getCompanyData() {
     this.commonApiService
-      .getRequest('/api/collections/Companies/records')
+      .getRequest('/api/collections/Faculty_cordinators/records?expand=branch')
       .subscribe((res: any) => {
         this.companyList = res.items;
         this.companyList = this.companyList.reverse();
