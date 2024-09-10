@@ -15,4 +15,4 @@ const routes: Routes = [
     RouterModule.forChild(routes),
   ]
 })
-export class CompanyListModule { }
+export class FacultyListModule { }

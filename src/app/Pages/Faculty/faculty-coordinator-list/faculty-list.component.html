@@ -11,7 +11,7 @@
                     class="bg-indigo-600 px-4 py-2 rounded-md text-white font-semibold tracking-wide cursor-pointer hover:bg-indigo-700">
                     New Report
                 </button> -->
-                <button routerLink="/add-company" *ngIf="commonService.getUserRole() == 'ADMIN'"
+                <button routerLink="/add-faculty" *ngIf="commonService.getUserRole() == 'ADMIN'"
                     class="bg-indigo-600 px-4 py-2 rounded-md text-white font-semibold tracking-wide cursor-pointer hover:bg-indigo-700">
                     Add Faculty
                 </button>
@@ -80,7 +80,7 @@
                                 </td>
                                 
                                 <td class="px-5 py-5 border-b border-gray-200 dark:border-gray-700 text-sm">
-                                    <button  (click)="editCompany(item.id)"
+                                    <button  (click)="editFaculty(item.id)"
                                         *ngIf="commonService.getUserRole() == 'ADMIN'"
                                         class="bg-indigo-600 px-4 py-2 rounded-md text-white font-semibold tracking-wide cursor-pointer hover:bg-indigo-700">
                                         Edit

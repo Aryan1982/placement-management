@@ -19,7 +19,9 @@ const routes: Routes = [
       { path: 'add-placement-drives/:id', loadChildren: () => import('../../PlacementDrives/add-placement-drives/add-placement-drives.module').then(m => m.AddPlacementDrivesModule) },
       { path: 'add-placement-drives', loadChildren: () => import('../../PlacementDrives/add-placement-drives/add-placement-drives.module').then(m => m.AddPlacementDrivesModule) },
       { path: 'placement-drives', loadChildren: () => import('../../PlacementDrives/placement-drives/placement-drives.module').then(m => m.PlacementDrivesModule) },
-      { path: 'faculty-list', loadChildren: () => import('../../Faculty/faculty-coordinator-list/faculty-list.module').then(m => m.CompanyListModule) },
+      { path: 'faculty-list', loadChildren: () => import('../../Faculty/faculty-coordinator-list/faculty-list.module').then(m => m.FacultyListModule) },
+      { path: 'add-faculty', loadChildren: () => import('../../Faculty/add-faculty/add-faculty.module').then(m => m.AddFacultyModule) },
+      { path: 'add-faculty/:id', loadChildren: () => import('../../Faculty/add-faculty/add-faculty.module').then(m => m.AddFacultyModule) },
     ]
   },
 ];

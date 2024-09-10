@@ -6,7 +6,6 @@ import { CommonApiService } from 'src/app/services/commonApi.service';
 @Component({
   selector: 'app-faculty-list',
   templateUrl: './faculty-list.component.html',
-  styleUrls: ['./faculty-list.component.scss'],
 })
 export class FacultyListComponent implements OnInit {
   public companyList: any;
@@ -53,7 +52,7 @@ export class FacultyListComponent implements OnInit {
     this.router.navigateByUrl(`companyprofile/${id}`);
   }
 
-  editCompany(id: number) {
-    this.router.navigateByUrl(`/add-company/${id}`);
+  editFaculty(id: number) {
+    this.router.navigateByUrl(`/add-faculty/${id}`);
   }
 }

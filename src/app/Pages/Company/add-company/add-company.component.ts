@@ -43,7 +43,7 @@ export class AddCompanyComponent {
   }
 
   getCompanyDetails(){
-    this.commonApiService.getRequest(`/api/collections/Companies/records/${this.companyId}`).subscribe((res)=>{
+    this.commonApiService.getRequest(`api/collections/Companies/records/${this.companyId}`).subscribe((res)=>{
       this.companyForm.patchValue({
       name: res.name,
       mode_of_contact:res.mode_of_contact,
