@@ -55,6 +55,10 @@
                         </tr>
                     </thead>
                     <tbody>
+                        <ng-container *ngIf="noStudents">
+                            NO STUDENTS FOUND
+                        </ng-container>
+                       
                         <ng-container *ngFor="let item of studentList">
                             <tr class="bg-white dark:bg-gray-800">
                                 <td class="px-5 py-5 border-b border-gray-200 dark:border-gray-700 text-sm">
@@ -76,7 +80,7 @@
                                 </td>
                                 <td class="px-5 py-5 border-b border-gray-200 dark:border-gray-700 text-sm">
                                     <p class="text-gray-900 dark:text-gray-200 whitespace-no-wrap">
-                                        {{item.expand?.department.name ?? '-' }}</p>
+                                        {{item.expand?.branch?.name ?? '-' }}</p>
                                 </td>
                                 <td class="px-5 py-5 border-b border-gray-200 dark:border-gray-700 text-sm">
                                     <span

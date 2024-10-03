@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CommonService } from 'src/app/services/common.service';
 import { CommonApiService } from 'src/app/services/commonApi.service';
+import { CompanyListComponent } from '../../Company/company-list/company-list.component';
 
 @Component({
   selector: 'app-student-list',
@@ -10,27 +11,46 @@ import { CommonApiService } from 'src/app/services/commonApi.service';
 })
 export class StudentListComponent implements OnInit {
   studentList: any;
+  dept: any;
+  noStudents:boolean = false;
   constructor(
     private commonApiService: CommonApiService,
     public commonService: CommonService,
-    private router: Router
+    private router: Router,
+    private route:ActivatedRoute,
   ) { }
   ngOnInit(): void {
-    // this.commonApiService.getRequest('/api/collections/StudentData/records').subscribe((res:any)=>{
-    //   console.log(res)
-    // })
-    this.getStudents()
+    this.route.paramMap.subscribe((params) => {
+      this.dept = params.get('dept')!;
+      
+      if (this.dept) {
+        this.getStudents(this.dept);
+      } else {
+        this.getStudents("");
+      }
+    });
   }
-
-  getStudents() {
-    console.log('getstudents')
-    this.commonApiService.getRequest('api/collections/Student/records?expand=department').subscribe((res: any) => {
+  
+  getStudents(dept: string) {
+    console.log('getstudents');
+    this.noStudents = false
+    this.commonApiService.getRequest('api/collections/Student/records?expand=department,branch').subscribe((res: any) => {
       this.studentList = res.items;
-      console.log(this.studentList)
+      console.log(this.studentList, "dept");
+  
+      if (dept != "") {
+        this.studentList = this.studentList.filter((student: any) => {
+          return student.expand?.branch?.department === dept;
+        });
+        
+        console.log(dept, this.studentList);
+        console.log(this.studentList, "filteredlist");
+      }
+      this.studentList.length == 0 ? this.noStudents = true : this.noStudents = false
       this.studentList = this.studentList.reverse();
-
-    })
+    });
   }
+  
 
   routeToProfile(id: number) {
     this.router.navigateByUrl(`/studentprofile/${id}`)
