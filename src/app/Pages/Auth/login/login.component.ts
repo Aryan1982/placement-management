@@ -36,7 +36,6 @@ export class LoginComponent {
                 `/api/collections/Student/records?filter=(email="${res.record.email}")`
               )
               .subscribe((student: any) => {
-                console.log(student.items[0].id);
                 res.record.studentId = student.items[0].id;
                 localStorage.setItem('userRecord', JSON.stringify(res.record));
                 this.router.navigateByUrl('/companylist');

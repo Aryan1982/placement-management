@@ -74,7 +74,6 @@ export class AddStudentComponent {
       });
   }
   submitStudentForm(): void {
-    console.log(this.studentForm)
     if (this.studentForm.invalid) {
       alert('fill all the fields');
       this.studentForm.markAllAsTouched();

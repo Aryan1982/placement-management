@@ -32,19 +32,15 @@ export class StudentListComponent implements OnInit {
   }
   
   getStudents(dept: string) {
-    console.log('getstudents');
     this.noStudents = false
     this.commonApiService.getRequest('api/collections/Student/records?expand=department,branch').subscribe((res: any) => {
       this.studentList = res.items;
-      console.log(this.studentList, "dept");
   
       if (dept != "") {
         this.studentList = this.studentList.filter((student: any) => {
           return student.expand?.branch?.department === dept;
         });
         
-        console.log(dept, this.studentList);
-        console.log(this.studentList, "filteredlist");
       }
       this.studentList.length == 0 ? this.noStudents = true : this.noStudents = false
       this.studentList = this.studentList.reverse();

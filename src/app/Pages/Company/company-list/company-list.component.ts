@@ -42,7 +42,7 @@ export class CompanyListComponent implements OnInit {
   
   getCompanyData() {
     this.commonApiService
-      .getRequest('/api/collections/Companies/records')
+      .getRequest('api/collections/Companies/records')
       .subscribe((res: any) => {
         this.companyList = res.items;
         this.companyList = this.companyList.reverse();

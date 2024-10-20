@@ -22,7 +22,6 @@ export class StudentProfileComponent implements OnInit {
     
     this.commonApiService.getRequest(`/api/collections/Student/records/${this.studentId}`).subscribe((res: any) => {
       this.studentData = res;
-      console.log(res)
     });
   }
 }

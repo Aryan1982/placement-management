@@ -30,7 +30,6 @@ export class AddFacultyComponent {
       this.facultyId = this.route.snapshot.paramMap.get('id')!;
       if(this.facultyId){
         this.getFacultyDetails()
-        console.log(this.facultyId)
       }
       this.getBranches()
   }

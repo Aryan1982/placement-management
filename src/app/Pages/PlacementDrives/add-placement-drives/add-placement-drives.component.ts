@@ -49,7 +49,6 @@ export class AddPlacementDrivesComponent {
 
   getStatus(){
     this.commonApiService.getRequest('api/collections/Status/records').subscribe((res:any)=>{
-      console.log(res.items)
       this.status = res.items
     })
   }
@@ -78,14 +77,11 @@ export class AddPlacementDrivesComponent {
     })
   }
   onSubmit() {
-    console.log(this.placementDriveFrom)
     if(this.placementDriveFrom.invalid){
       alert('Fill all the details')
       return
     }
-    const selectedEligibleCourses = this.placementDriveFrom.get('eligible_courses')?.value;
-    console.log('Selected Eligible Courses:', selectedEligibleCourses);
-    
+  
     if(this.companyId){
       this.commonApiService.patchRequest(`/api/collections/JobPosts/records/${this.companyId}`, this.placementDriveFrom.value)
         .subscribe(

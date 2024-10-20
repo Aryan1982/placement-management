@@ -43,11 +43,9 @@ export class CommonApiService {
             const appliedCompanyIds = new Set(
               applications.map((app: any) => app.company_id)
             );
-            console.log('Applied Company IDs:', appliedCompanyIds);
 
             return companies.map((company: any) => {
               const hasApplied = appliedCompanyIds.has(company.id);
-              console.log(`Company ${company.id}: hasApplied = ${hasApplied}`);
               return {
                 ...company,
                 hasApplied: hasApplied,

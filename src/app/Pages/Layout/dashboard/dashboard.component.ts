@@ -28,13 +28,11 @@ export class DashboardComponent {
   routeToProfile(){
     const userString:any = localStorage.getItem('userRecord');
     const record = JSON.parse(userString) 
-    console.log(record)
     this.router.navigateByUrl(`/studentprofile/${record.studentId}`)
   }
 
   getDepartments(){
     this.commonApiService.getRequest('/api/collections/Department/records').subscribe((res:any)=>{
-      console.log("getDepartments()",res)
       this.departments = res.items;
     })
   }

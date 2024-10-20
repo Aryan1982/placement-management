@@ -45,7 +45,6 @@ export class PlacementDrivesComponent implements OnInit {
       .getRequest('/api/collections/JobPosts/records?expand=company,status')
       .subscribe((res: any) => {
         this.companyList = res.items;
-        console.log(this.companyList)
         this.companyList = this.companyList.reverse();
       });
   }

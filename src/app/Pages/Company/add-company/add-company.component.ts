@@ -38,7 +38,6 @@ export class AddCompanyComponent {
       this.companyId = this.route.snapshot.paramMap.get('id')!;
       if(this.companyId){
         this.getCompanyDetails()
-        console.log(this.companyId)
       }
   }
 
@@ -61,16 +60,12 @@ export class AddCompanyComponent {
     })
   }
   onSubmit() {
-    console.log(this.companyForm.value)
     if(this.companyForm.invalid){
       alert('Fill all the details')
       return
     }
-    const selectedEligibleCourses = this.companyForm.get('eligible_courses')?.value;
-    console.log('Selected Eligible Courses:', selectedEligibleCourses);
-    
     if(this.companyId){
-      this.commonApiService.patchRequest(`/api/collections/Companies/records/${this.companyId}`, this.companyForm.value)
+      this.commonApiService.patchRequest(`api/collections/Companies/records/${this.companyId}`, this.companyForm.value)
         .subscribe(
           (response) => {
             this.router.navigateByUrl('/companylist')
@@ -81,7 +76,7 @@ export class AddCompanyComponent {
         );
       return;
     }
-    this.commonApiService.postRequest('/api/collections/Companies/records', this.companyForm.value)
+    this.commonApiService.postRequest('api/collections/Companies/records', this.companyForm.value)
       .subscribe(
         (response) => {
           this.router.navigateByUrl('/companylist')
